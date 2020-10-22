@@ -1,8 +1,8 @@
-/* Napisati program koji prvo proËita koliko redaka ima datoteka, tj. koliko ima studenata
-zapisanih u datoteci. Nakon toga potrebno je dinamiËki alocirati prostor za niz struktura
-studenata (ime, prezime, bodovi) i uËitati iz datoteke sve zapise. Na ekran ispisati ime,
+/* Napisati program koji prvo pro√®ita koliko redaka ima datoteka, tj. koliko ima studenata
+zapisanih u datoteci. Nakon toga potrebno je dinami√®ki alocirati prostor za niz struktura
+studenata (ime, prezime, bodovi) i u√®itati iz datoteke sve zapise. Na ekran ispisati ime,
 prezime,apsolutni i relativni broj bodova.
-Napomena: Svaki redak datoteke sadrûi ime i prezime studenta, te broj bodova na kolokviju.
+Napomena: Svaki redak datoteke sadr≈æi ime i prezime studenta, te broj bodova na kolokviju.
 relatvan_br_bodova = br_bodova/max_br_bodova*100 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -37,7 +37,7 @@ int main() {
 	printf("Broj redaka je: %d\n", br);
 
 
-	//DinamiËka alokacija strukture u koju spremamo podatke
+	//Dinami√®ka alokacija strukture u koju spremamo podatke
 	a = (student*) malloc(br * sizeof(student));
 
 	//Pozivanje funkcije za Unos
@@ -50,7 +50,7 @@ int main() {
 	pom_ispis = Ispis(a, br);
 
 	if (pom_ispis != 0)
-		printf("Kraljice.... NeÊe ispis!");
+		printf("Kraljice.... Ne√¶e ispis!");
 
 		free(a);
 
@@ -69,7 +69,7 @@ int BrojanjeRedaka() {
 		return ERR;
 	}
 
-	//VraÊanje na poËetak u datoteci
+	//Vra√¶anje na po√®etak u datoteci
 	//Ovo je dobro napraviti jer ne znamo gdje se nalazimo u njoj pa je dobro vratit se na pocetak
 	rewind(fp);
 
@@ -98,7 +98,7 @@ int Unos(student* a, int br) {
 		return ERR;
 	}
 
-	//VraÊanje na poËetak u datoteci
+	//Vra√¶anje na po√®etak u datoteci
 	rewind(fp);
 
 	//Unos 
