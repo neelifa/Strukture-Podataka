@@ -5,6 +5,7 @@ prezime,apsolutni i relativni broj bodova.
 Napomena: Svaki redak datoteke sadrži ime i prezime studenta, te broj bodova na kolokviju.
 relatvan_br_bodova = br_bodova/max_br_bodova*100 */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h> 
 #include <stdlib.h>
 #include <malloc.h>
@@ -19,12 +20,12 @@ typedef struct _stud
 }student;
 
 int BrojanjeRedaka();
-int Unos(_stud*);
-int Ispis(_stud*, int);
+int Unos(student*);
+int Ispis(student*, int);
 
 int main() {
 	
-	_stud *a;
+	student *a;
 	int br, pom_unos, pom_ispis;
 
 	//Broj redaka u datoteci student.txt
@@ -33,9 +34,11 @@ int main() {
 	if (br == ERR)
 		printf("Datoteka nije otvorena!(br.redaka)");
 
+	printf("Broj redaka je: %d\n", br);
+
 
 	//Dinamička alokacija strukture u koju spremamo podatke
-	a = (_stud*) malloc(br * sizeof(_stud));
+	a = (student*) malloc(br * sizeof(student));
 
 	//Pozivanje funkcije za Unos
 	pom_unos = Unos(a);
@@ -80,7 +83,7 @@ int BrojanjeRedaka() {
 
 }
 
-int Unos(_stud* a) {
+int Unos(student* a) {
 
 	//Otvaranje datoteke
 	
@@ -105,11 +108,11 @@ int Unos(_stud* a) {
 	return 0;
 }
 
-int Ispis(_stud* a, int br) {
+int Ispis(student* a, int br) {
 	int i;
-
+	
 	for (i = 0; i < br; i++)
-		printf("%s %s %d %.2f", a->FirstName, a->LastName, a->result, (float)(a->result / 50) * 100);
+		printf("%s %s %d %.2f\n", a->FirstName, a->LastName, a->result, (float)(a->result / 50) * 100);
 
 	return 0;
 }
