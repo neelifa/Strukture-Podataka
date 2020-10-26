@@ -25,7 +25,7 @@ int Ispis(student*, int);
 
 int main() {
 	
-	student *a;
+	student *a = NULL;
 	int br, pom_unos, pom_ispis;
 
 	//Broj redaka u datoteci student.txt
@@ -39,6 +39,10 @@ int main() {
 
 	//Dinamièka alokacija strukture u koju spremamo podatke
 	a = (student*) malloc(br * sizeof(student));
+	
+	//Provjera dali je alokacija uspješna
+	if(a == NULL)
+		printf("Neće alokacija kraljice........");
 
 	//Pozivanje funkcije za Unos
 	pom_unos = Unos(a, br);
@@ -69,7 +73,7 @@ int BrojanjeRedaka() {
 		return ERR;
 	}
 
-	//Vraæanje na poèetak u datoteci
+	//Vracanje na pocetak u datoteci
 	//Ovo je dobro napraviti jer ne znamo gdje se nalazimo u njoj pa je dobro vratit se na pocetak
 	rewind(fp);
 
@@ -98,7 +102,7 @@ int Unos(student* a, int br) {
 		return ERR;
 	}
 
-	//Vraæanje na poèetak u datoteci
+	//Vracanje na pocetak u datoteci
 	rewind(fp);
 
 	//Unos 
