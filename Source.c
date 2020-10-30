@@ -28,7 +28,7 @@ int UnosP(Pozicija h);
 int UnosK(Pozicija h);
 int Ispis(Pozicija h);
 Pozicija TraziPrez(Pozicija h);
-Pozicija TraziPrethodni(Pozicija h, char prez);
+Pozicija TraziPrethodni(Pozicija h, char* prez);
 int BrisiEl(Pozicija h);
 
 int main() {
@@ -125,7 +125,7 @@ Pozicija TraziPrez(Pozicija h) {
 
 	return h;
 }
-Pozicija TraziPrethodni(Pozicija h, char *prez) {
+Pozicija TraziPrethodni(Pozicija h, char* prez) {
 
 	Pozicija Prev = h;
 	h = h->next;
