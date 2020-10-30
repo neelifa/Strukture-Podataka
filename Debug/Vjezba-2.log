@@ -1,7 +1,7 @@
 ﻿  Source.c
 E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(61,15): warning C4047: '==': 'Pozicija' differs in levels of indirection from 'int'
-E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(133,42): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
-E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(133,38): warning C4024: 'strcmp': different types for formal and actual parameter 2
+E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(133,44): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(133,40): warning C4024: 'strcmp': different types for formal and actual parameter 2
 E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(153,31): warning C4047: 'function': 'char' differs in levels of indirection from 'char [256]'
 E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(153,27): warning C4024: 'TraziPrethodni': different types for formal and actual parameter 2
 E:\FESB\2. godina\Strukture podataka\labs\vj2\Vjezba-2\Source.c(116): warning C4716: 'Ispis': must return a value

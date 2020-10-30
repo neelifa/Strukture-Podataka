@@ -61,7 +61,7 @@ int main() {
 	if (tr == ERR)
 		printf("Kraljice nece trazenje......");
 
-	printf("Prezime u naðenom elementu je: %s", tr->prezime); //Oznacava da je trazenje uspjelo
+	printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
 
 	//Primjer brisanja elementa naðenog po prezimenu
 	succ = BrisiEl(&Head);
@@ -145,17 +145,18 @@ Pozicija TraziPrethodni(Pozicija h, char prez) {
 int BrisiEl(Pozicija h) {
 	
 	char prez[MAX_NAME];
-	Pozicija Prev;
+	Pozicija Prev, pom = NULL;
 
 	printf("Unesite prezime clana kojeg zelite izbrisati: ");
-	scanf("%s\n", prez);
+	scanf(" %s", prez);
 
 	Prev = TraziPrethodni(h, prez);
 	
 	if (Prev != NULL) {
-		h = Prev->next;
-		Prev->next = h->next;
-		free(h);
+		pom = Prev->next;
+		Prev->next = pom->next;
+		free(pom);
+		
 	}
 
 	return OKAY;
