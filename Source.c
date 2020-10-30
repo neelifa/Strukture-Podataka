@@ -125,7 +125,7 @@ Pozicija TraziPrez(Pozicija h) {
 
 	return h;
 }
-Pozicija TraziPrethodni(Pozicija h, char prez) {
+Pozicija TraziPrethodni(Pozicija h, char *prez) {
 
 	Pozicija Prev = h;
 	h = h->next;
