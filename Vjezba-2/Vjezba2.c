@@ -1,9 +1,9 @@
-/*Definirati strukturu osoba(ime, prezime, godina roðenja) i napisati program koji :
-a) dinamièki dodaje novi element na poèetak liste,
+/*Definirati strukturu osoba(ime, prezime, godina roÃ°enja) i napisati program koji :
+a) dinamiÃ¨ki dodaje novi element na poÃ¨etak liste,
 b) ispisuje listu,
-c) dinamièki dodaje novi element na kraj liste,
+c) dinamiÃ¨ki dodaje novi element na kraj liste,
 d) pronalazi element u listi(po prezimenu),
-e) briše odreðeni element iz liste,
+e) briÅ¡e odreÃ°eni element iz liste,
 U zadatku se ne smiju koristiti globalne varijable.*/
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -38,7 +38,7 @@ int main() {
 	Pozicija tr;
 	Head.next = NULL;
 
-	//Unošenje elemenata
+	//UnoÅ¡enje elemenata
 	succ = UnosP(&Head);
 	if (succ == ERR)
 		printf("Ne radi unosP kraljice.....");
@@ -61,12 +61,12 @@ int main() {
 	if (tr == ERR)
 		printf("Kraljice nece trazenje......");
 
-	printf("Prezime u naðenom elementu je: %s", tr->prezime); //Oznacava da je trazenje uspjelo
+	printf("Prezime u naÃ°enom elementu je: %s", tr->prezime); //Oznacava da je trazenje uspjelo
 
-	//Primjer brisanja elementa naðenog po prezimenu
+	//Primjer brisanja elementa naÃ°enog po prezimenu
 	succ = BrisiEl(&Head);
 	if (succ != OKAY)
-		printf("Kraljice neæe brisanje.......");
+		printf("Kraljice neÃ¦e brisanje.......");
 	//Ispis
 	succ = Ispis(Head.next);
 	if (succ == ERR)
