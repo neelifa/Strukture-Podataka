@@ -1,0 +1,4 @@
+﻿  Source.c
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(79,15): warning C4047: '==': 'Pozicija' differs in levels of indirection from 'int'
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(136): warning C4716: 'Ispis': must return a value
+  Vjezbe-03.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe

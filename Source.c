@@ -37,6 +37,11 @@ int Ispis(Pozicija h);
 Pozicija TraziPrez(Pozicija h);
 Pozicija TraziPrethodni(Pozicija h, char* prez);
 int BrisiEl(Pozicija h);
+int Sortiraj(Pozicija h);
+int UnosIza(Pozicija h, char* prez);
+int UnosIspred(Pozicija h, char* prez);
+int UpisiDat(Pozicija h);
+int CitajDat(Pozicija h);
 
 int main() {
 
@@ -63,6 +68,16 @@ int main() {
 	if (succ == ERR)
 		printf("Ne radi Ispis kraljice.....");
 
+	//Sortiranje i ispis
+	//succ = Sortiraj(&Head);
+	//if (succ != OKAY)
+		//printf("Ne radi sortiranje kraljice.....");
+
+	succ = Ispis(Head.next);
+	if (succ == ERR)
+		printf("Ne radi Ispis kraljice.....");
+
+
 	//Primjer trazenja elementa po prezimenu 
 	tr = TraziPrez(&Head);
 	if (tr == ERR)
@@ -78,6 +93,8 @@ int main() {
 	succ = Ispis(Head.next);
 	if (succ == ERR)
 		printf("Ne radi Ispis kraljice.....");
+
+
 
 	return 0;
 }
@@ -167,4 +184,40 @@ int BrisiEl(Pozicija h) {
 	}
 
 	return OKAY;
+}
+int Sortiraj(Pozicija h) {
+	Pozicija j, prev_j, temp;
+
+	while (h->next != NULL) {
+		prev_j = h;
+		j = h->next;
+
+		while (j->next != NULL) {
+			if (strcmp(j->prezime, j->next->prezime) > 0) {
+				temp = j->next;
+				prev_j->next = temp;
+				j->next = temp->next;
+				temp->next = j;
+
+				j = temp;
+			}
+			prev_j = j;
+			j = j->next;
+		}
+		j = NULL;
+	}
+
+	return OKAY;
+}
+int UnosIza(Pozicija h, char* prez) {
+
+}
+int UnosIspred(Pozicija h, char* prez) {
+
+}
+int UpisiDat(Pozicija h) {
+
+}
+int CitajDat(Pozicija h) {
+
 }
