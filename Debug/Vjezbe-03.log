@@ -1,5 +1,1 @@
-﻿  Source.c
-E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(49,11): warning C4101: 'tr': unreferenced local variable
-E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(231,19): warning C4047: 'function': 'Pozicija' differs in levels of indirection from 'Pozicija *'
-E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(231,17): warning C4024: 'TraziPrez': different types for formal and actual parameter 1
-  Vjezbe-03.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe
+﻿LINK : fatal error LNK1168: cannot open E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe for writing

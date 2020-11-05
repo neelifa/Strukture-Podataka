@@ -90,22 +90,22 @@ int main() {
 		printf("Ne radi Ispis kraljice.....");*/
 
 	//Primjer trazenja elementa po prezimenu 
-	//printf("Unesite prezime koje zelite pronaci: ");
-	//scanf("%s/n", prez);
-	//tr = TraziPrez(&Head, prez);
-	//if (tr == ERR)
-		//printf("Kraljice nece trazenje......");
+	/*printf("Unesite prezime koje zelite pronaci: ");
+	scanf("%s/n", prez);
+	tr = TraziPrez(&Head, prez);
+	if (tr == ERR)
+		printf("Kraljice nece trazenje......");*/
 
 	//printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
 
 	//Primjer brisanja elementa naðenog po prezimenu
-	succ = BrisiEl(&Head);
+	/*succ = BrisiEl(&Head);
 	if (succ != OKAY)
-		printf("Kraljice neæe brisanje.......");
+		printf("Kraljice neæe brisanje.......");*/
 	//Ispis
-	succ = Ispis(Head.next);
+	/*succ = Ispis(Head.next);
 	if (succ == ERR)
-		printf("Ne radi Ispis kraljice.....");
+		printf("Ne radi Ispis kraljice.....");*/
 
 
 
@@ -226,7 +226,7 @@ int UnosIza(Pozicija h) {
 	int succ;
 
 	printf("Unesite prezime elementa iza kojega želite unijeti novi element: ");
-	scanf("%s", iza);
+	scanf(" %s", iza);
 
 	pr = TraziPrez(&h, iza);
 
@@ -244,7 +244,7 @@ int UnosIspred(Pozicija h) {
 	int succ;
 
 	printf("Unesite prezime elementa ispred kojega želite unijeti novi element: ");
-	scanf("%s", ispred);
+	scanf(" %s", ispred);
 
 	pred = TraziPrethodni(h, ispred);
 
