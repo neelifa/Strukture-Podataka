@@ -77,8 +77,14 @@ int main() {
 
 	//Ispis elemenata
 	succ = Ispis(Head.next);
-	if (succ == ERR)
+	if (succ != OKAY)
 		printf("Ne radi Ispis kraljice.....");
+
+	//Upis unesenih stvari u datoteku
+	succ = UpisiDat(&Head);
+	if (succ == ERR)
+		printf("Neæe datoteka(w) kraljice.......");
+
 
 	//Sortiranje i ispis
 	//succ = Sortiraj(&Head);
@@ -262,14 +268,14 @@ int UpisiDat(Pozicija h) {
 
 	FILE* fp;
 
-	fp = fopen("studenti1.txt", "w");
+	fp = fopen("studenti.txt", "w");
 	if (fp == NULL) {
 		printf("Neæe da se otvori datoteka za upis kween....");
 		return ERR;
 	}
 	rewind(fp);
 
-	while (!feof(fp)) {
+	while(h != NULL){
 		fprintf(fp, "%s %s %d\n", h->ime, h->prezime, h->god_rod);
 		h = h->next;
 	}
