@@ -1,1 +1,3 @@
-﻿LINK : fatal error LNK1168: cannot open E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe for writing
+﻿  Source.c
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(49,11): warning C4101: 'tr': unreferenced local variable
+  Vjezbe-03.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe

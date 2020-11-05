@@ -89,23 +89,23 @@ int main() {
 	if (succ == ERR)
 		printf("Ne radi Ispis kraljice.....");*/
 
-	//Primjer trazenja elementa po prezimenu 
-	/*printf("Unesite prezime koje zelite pronaci: ");
-	scanf("%s/n", prez);
-	tr = TraziPrez(&Head, prez);
-	if (tr == ERR)
-		printf("Kraljice nece trazenje......");*/
+		//Primjer trazenja elementa po prezimenu 
+		/*printf("Unesite prezime koje zelite pronaci: ");
+		scanf("%s/n", prez);
+		tr = TraziPrez(&Head, prez);
+		if (tr == ERR)
+			printf("Kraljice nece trazenje......");*/
 
-	//printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
+			//printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
 
-	//Primjer brisanja elementa naðenog po prezimenu
-	/*succ = BrisiEl(&Head);
-	if (succ != OKAY)
-		printf("Kraljice neæe brisanje.......");*/
-	//Ispis
-	/*succ = Ispis(Head.next);
-	if (succ == ERR)
-		printf("Ne radi Ispis kraljice.....");*/
+			//Primjer brisanja elementa naðenog po prezimenu
+			/*succ = BrisiEl(&Head);
+			if (succ != OKAY)
+				printf("Kraljice neæe brisanje.......");*/
+				//Ispis
+				/*succ = Ispis(Head.next);
+				if (succ == ERR)
+					printf("Ne radi Ispis kraljice.....");*/
 
 
 
@@ -116,6 +116,7 @@ int UnosP(Pozicija h) {
 
 	Pozicija p;
 	p = (Pozicija)malloc(sizeof(student));
+	p->next = NULL;
 	if (p == NULL)
 		return ERR;
 
@@ -228,7 +229,7 @@ int UnosIza(Pozicija h) {
 	printf("Unesite prezime elementa iza kojega želite unijeti novi element: ");
 	scanf(" %s", iza);
 
-	pr = TraziPrez(&h, iza);
+	pr = TraziPrez(h, iza);
 
 	succ = UnosP(pr);
 	if (succ == ERR) {
@@ -243,7 +244,7 @@ int UnosIspred(Pozicija h) {
 	Pozicija pred;
 	int succ;
 
-	printf("Unesite prezime elementa ispred kojega želite unijeti novi element: ");
+	printf("Unesite prezime elementa ispred kojega zelite unijeti novi element: ");
 	scanf(" %s", ispred);
 
 	pred = TraziPrethodni(h, ispred);
@@ -289,6 +290,8 @@ int CitajDat(Pozicija h) {
 	while (!feof(fp)) {
 		Pozicija q;
 		q = (Pozicija)malloc(sizeof(student));
+		q->next = NULL;
+
 		fscanf(fp, "%s %s %d", q->ime, q->prezime, &q->god_rod);
 		printf("%s %s %d\n", q->ime, q->prezime, q->god_rod);
 		q->next = h->next;
