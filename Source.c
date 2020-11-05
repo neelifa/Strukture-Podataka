@@ -30,16 +30,15 @@ typedef struct _student {
 	Pozicija next;
 }student;
 
-
 int UnosP(Pozicija h);
 int UnosK(Pozicija h);
 int Ispis(Pozicija h);
-Pozicija TraziPrez(Pozicija h);
+Pozicija TraziPrez(Pozicija h, char* prez);
 Pozicija TraziPrethodni(Pozicija h, char* prez);
 int BrisiEl(Pozicija h);
 int Sortiraj(Pozicija h);
-int UnosIza(Pozicija h, char* prez);
-int UnosIspred(Pozicija h, char* prez);
+int UnosIza(Pozicija h);
+int UnosIspred(Pozicija h);
 int UpisiDat(Pozicija h);
 int CitajDat(Pozicija h);
 
@@ -51,6 +50,8 @@ int main() {
 	Head.next = NULL;
 
 	//Unošenje elemenata
+
+	//Unos na poèetak liste
 	succ = UnosP(&Head);
 	if (succ == ERR)
 		printf("Ne radi unosP kraljice.....");
@@ -59,9 +60,20 @@ int main() {
 	if (succ == ERR)
 		printf("Ne radi unosP kraljice.....");
 
+	//Unos na kraj liste
 	succ = UnosK(&Head);
 	if (succ == ERR)
 		printf("Ne radi unosK kraljice.....");
+
+	//Unos iza nekog elementa
+	succ = UnosIza(&Head);
+	if (succ == ERR)
+		printf("Kraljice ne radi ti unos iza...........");
+
+	//Unos ispred nekog elementa
+	succ = UnosIspred(&Head);
+	if (succ == ERR)
+		printf("Kraljice ne radi ti unos ispred...........");
 
 	//Ispis elemenata
 	succ = Ispis(Head.next);
@@ -73,17 +85,18 @@ int main() {
 	//if (succ != OKAY)
 		//printf("Ne radi sortiranje kraljice.....");
 
-	succ = Ispis(Head.next);
+	/*succ = Ispis(Head.next);
 	if (succ == ERR)
-		printf("Ne radi Ispis kraljice.....");
-
+		printf("Ne radi Ispis kraljice.....");*/
 
 	//Primjer trazenja elementa po prezimenu 
-	tr = TraziPrez(&Head);
-	if (tr == ERR)
-		printf("Kraljice nece trazenje......");
+	//printf("Unesite prezime koje zelite pronaci: ");
+	//scanf("%s/n", prez);
+	//tr = TraziPrez(&Head, prez);
+	//if (tr == ERR)
+		//printf("Kraljice nece trazenje......");
 
-	printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
+	//printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
 
 	//Primjer brisanja elementa naðenog po prezimenu
 	succ = BrisiEl(&Head);
@@ -137,12 +150,10 @@ int Ispis(Pozicija h) {
 		h = h->next;
 	}
 
-}
-Pozicija TraziPrez(Pozicija h) {
+	return OKAY;
 
-	char prez[MAX_NAME];
-	printf("Unesite prezime koje zelite pronaci: ");
-	scanf("%s/n", prez);
+}
+Pozicija TraziPrez(Pozicija h, char* prez) {
 
 	while (h != NULL && strcmp(h->prezime, prez) != 0)
 		h = h->next;
@@ -209,15 +220,80 @@ int Sortiraj(Pozicija h) {
 
 	return OKAY;
 }
-int UnosIza(Pozicija h, char* prez) {
+int UnosIza(Pozicija h) {
+	Pozicija pr;
+	char iza[MAX_NAME];
+	int succ;
 
+	printf("Unesite prezime elementa iza kojega želite unijeti novi element: ");
+	scanf("%s", iza);
+
+	pr = TraziPrez(&h, iza);
+
+	succ = UnosP(pr);
+	if (succ == ERR) {
+		printf("Unos iza neæe.........");
+		return ERR;
+	}
+
+	return OKAY;
 }
-int UnosIspred(Pozicija h, char* prez) {
+int UnosIspred(Pozicija h) {
+	char ispred[MAX_NAME];
+	Pozicija pred;
+	int succ;
+
+	printf("Unesite prezime elementa ispred kojega želite unijeti novi element: ");
+	scanf("%s", ispred);
+
+	pred = TraziPrethodni(h, ispred);
+
+	succ = UnosP(pred);
+	if (succ == ERR) {
+		printf("Unos ispred neæe.........");
+		return ERR;
+	}
+
+	return OKAY;
 
 }
 int UpisiDat(Pozicija h) {
 
+	FILE* fp;
+
+	fp = fopen("studenti1.txt", "w");
+	if (fp == NULL) {
+		printf("Neæe da se otvori datoteka za upis kween....");
+		return ERR;
+	}
+	rewind(fp);
+
+	while (!feof(fp)) {
+		fprintf(fp, "%s %s %d\n", h->ime, h->prezime, h->god_rod);
+		h = h->next;
+	}
+
+	fclose(fp);
+	return OKAY;
 }
 int CitajDat(Pozicija h) {
+	FILE* fp;
 
+	fp = fopen("studenti.txt", "w");
+	if (fp == NULL) {
+		printf("Neæe da se otvori datoteka za citanje kween....");
+		return ERR;
+	}
+	rewind(fp);
+
+	while (!feof(fp)) {
+		Pozicija q;
+		q = (Pozicija)malloc(sizeof(student));
+		fscanf(fp, "%s %s %d", q->ime, q->prezime, &q->god_rod);
+		printf("%s %s %d\n", q->ime, q->prezime, q->god_rod);
+		q->next = h->next;
+		h->next = q;
+	}
+	fclose(fp);
+	return OKAY;
 }
