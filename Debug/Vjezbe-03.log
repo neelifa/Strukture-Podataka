@@ -1,3 +1,7 @@
 ﻿  Source.c
 E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(49,11): warning C4101: 'tr': unreferenced local variable
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(223,32): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(223,29): warning C4024: 'strcmp': different types for formal and actual parameter 1
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(223,47): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char'
+E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Source.c(223,44): warning C4024: 'strcmp': different types for formal and actual parameter 2
   Vjezbe-03.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj3\Vjezbe-03\Debug\Vjezbe-03.exe

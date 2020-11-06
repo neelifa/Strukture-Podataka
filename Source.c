@@ -50,6 +50,9 @@ int main() {
 	Head.next = NULL;
 
 	//Unošenje elemenata
+	CitajDat(&Head);
+	/*
+	
 
 	//Unos na poèetak liste
 	succ = UnosP(&Head);
@@ -80,20 +83,27 @@ int main() {
 	if (succ != OKAY)
 		printf("Ne radi Ispis kraljice.....");
 
-	//Upis unesenih stvari u datoteku
-	succ = UpisiDat(&Head);
-	if (succ == ERR)
-		printf("Neæe datoteka(w) kraljice.......");
+	*/
 
+	//Ispis
+	succ = Ispis(Head.next);
+	if (succ == ERR)
+		printf("Ne radi Ispis kraljice.....");
+
+
+	//Upis unesenih stvari u datoteku
+	/*succ = UpisiDat(&Head);
+	if (succ == ERR)
+		printf("Neæe datoteka(w) kraljice.......");*/
 
 	//Sortiranje i ispis
-	//succ = Sortiraj(&Head);
-	//if (succ != OKAY)
-		//printf("Ne radi sortiranje kraljice.....");
+	succ = Sortiraj(&Head);
+	if (succ != OKAY)
+		printf("Ne radi sortiranje kraljice.....");
 
-	/*succ = Ispis(Head.next);
+	succ = Ispis(Head.next);
 	if (succ == ERR)
-		printf("Ne radi Ispis kraljice.....");*/
+		printf("Ne radi Ispis kraljice.....");
 
 		//Primjer trazenja elementa po prezimenu 
 		/*printf("Unesite prezime koje zelite pronaci: ");
@@ -113,8 +123,6 @@ int main() {
 				if (succ == ERR)
 					printf("Ne radi Ispis kraljice.....");*/
 
-
-
 	return 0;
 }
 
@@ -125,7 +133,6 @@ int UnosP(Pozicija h) {
 	p->next = NULL;
 	if (p == NULL)
 		return ERR;
-
 
 	printf("Unesite ime prezime i godinu rodjenja(U istom ovom formatu!!):\n");
 	scanf("%s %s %d", p->ime, p->prezime, &p->god_rod);
@@ -150,7 +157,7 @@ int UnosK(Pozicija h) {
 }
 int Ispis(Pozicija h) {
 
-	printf("Ispis liste:\n\n");
+	printf("\nIspis liste:\n");
 
 	while (h != NULL) {
 		printf("%s %s %d\n", h->ime, h->prezime, h->god_rod);
@@ -204,26 +211,30 @@ int BrisiEl(Pozicija h) {
 	return OKAY;
 }
 int Sortiraj(Pozicija h) {
-	Pozicija j, prev_j, temp;
+	
+	Pozicija j, jprev, temp, temp1, zam;
+	temp = h;
+	temp1 = h;
 
-	while (h->next != NULL) {
-		prev_j = h;
-		j = h->next;
-
-		while (j->next != NULL) {
-			if (strcmp(j->prezime, j->next->prezime) > 0) {
-				temp = j->next;
-				prev_j->next = temp;
-				j->next = temp->next;
-				temp->next = j;
-
-				j = temp;
+	while (temp != NULL) {
+		while (temp1 != NULL) {
+			jprev = temp1;
+			j = temp1->next;
+			if (strcmp(jprev->prezime[0], j->prezime[0]) > 0)
+			{
+				zam = jprev;
+				jprev = j;
+				jprev->next = j->next;
+				j = zam;
+				j->next = jprev;
 			}
-			prev_j = j;
-			j = j->next;
+			temp1 = temp1->next;
 		}
-		j = NULL;
+		
+		temp = temp->next;
+		temp1 = h;
 	}
+
 
 	return OKAY;
 }
@@ -286,7 +297,7 @@ int UpisiDat(Pozicija h) {
 int CitajDat(Pozicija h) {
 	FILE* fp;
 
-	fp = fopen("studenti.txt", "w");
+	fp = fopen("studenti1.txt", "r");
 	if (fp == NULL) {
 		printf("Neæe da se otvori datoteka za citanje kween....");
 		return ERR;
@@ -299,7 +310,6 @@ int CitajDat(Pozicija h) {
 		q->next = NULL;
 
 		fscanf(fp, "%s %s %d", q->ime, q->prezime, &q->god_rod);
-		printf("%s %s %d\n", q->ime, q->prezime, q->god_rod);
 		q->next = h->next;
 		h->next = q;
 	}
