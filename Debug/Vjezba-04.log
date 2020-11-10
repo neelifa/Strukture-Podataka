@@ -1,0 +1,9 @@
+﻿  Source.c
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(49,10): warning C4553: '==': result of expression not used; did you intend '='?
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(50,11): warning C4553: '==': result of expression not used; did you intend '='?
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(59,9): warning C4477: 'scanf' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'int'
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(125): warning C4716: 'UnosString': must return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(214): warning C4716: 'MnozenjePol': must return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(219): warning C4716: 'IspisPol': must return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(81): warning C4716: 'Odabir': must return a value
+  Vjezba-04.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Debug\Vjezba-04.exe
