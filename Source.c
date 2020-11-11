@@ -43,46 +43,52 @@ int main() {
 int Odabir() {
 	int c; 
 	int succ;
-	struct poli p1, p2, rez;
+	char poli1[lng] = "pol1";
+	char poli2[lng]= "pol2";
+
+	struct poli p1;
+	struct poli p2;
+	struct poli rez;
 
 	p1.next = NULL;
-	p2.next == NULL;
-	rez.next == NULL;
+	p2.next = NULL;
+	rez.next = NULL;
 	
-	succ = UnosDat(&p1, "pol1");
-	succ = UnosDat(&p2, "pol2");
+	succ = UnosDat(&p1, &poli1);
+	succ = UnosDat(&p2, &poli2);
 
-	printf("Odaberite operaciju koju želite izvršiti:\n1 - Zbrajanje polinoma\n2 - Mnozenje polinoma");
+	IspisPol(&p1.next);
+	IspisPol(&p2.next);
+
+	printf("Odaberite operaciju koju želite izvršiti:\n1 - Zbrajanje polinoma\n2 - Mnozenje polinoma\n");
 	scanf("%d", &c);
-	if (c != 1 || c != 2) {
-		printf("Niste unijeli dobar broj! Unesite 1 ili 2!");
-		scanf("%d", c);
-	}
-
+	
 	switch (c) {
 	case(1):
-		succ = ZbrajanjePol(&p1, &p2, &rez);
+		succ = ZbrajanjePol(&p1.next, &p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
 			printf("Neæe zbrajanje!");
 		break;
 
 	case(2):
-		succ = MnozenjePol(&p1, &p2, &rez);
+		succ = MnozenjePol(&p1.next, &p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
 			printf("Neæe zbrajanje kraljice!");
 		break;
 
 	default:
 		Err();
+		return ERR;
+	}	
+	succ = IspisPol(&p1.next);
+	succ = IspisPol(&p2.next);
+	succ = IspisPol(&rez.next);
 
-	}
-	
-
+	return OKAY;
 }
 
 int Err() {
 	printf("Error!");
-
 	return OKAY;
 }
 
@@ -112,12 +118,13 @@ int UnosDat(Polinom p, char* fileName) {
 }
 
 int UnosString(Polinom p, char* line) {
+	int ret = 2; //Koristimo return vrijednost od sscanf (Broj elemenata koji je procito)
 	double p_koef = 0;
 	int p_exp = 0;
 	int n = 0;
 
-	while (line != '\0') {
-		sscanf(line, "%lf %d %n", &p_koef, &p_exp, &n);
+	while (ret != 2) {
+		ret = sscanf(line, "%lf %d %n", &p_koef, &p_exp, &n);
 		line += n;
 		SortUnos(p, p_koef, p_exp);
 	}
@@ -131,7 +138,7 @@ int SortUnos(Polinom p, double koef, int exp) {
 	while (p->next != NULL && p->next->Exp < exp)
 		p = p->next;
 
-	if (p->next->Exp == exp) {
+	if (p->next != NULL && p->next->Exp == exp) {
 		p->Koef += koef;
 
 		if (p->next->Koef == 0) {
@@ -167,13 +174,10 @@ int ZbrajanjePol(Polinom p, Polinom q, Polinom r) {
 	double t_koef;
 	int t_exp;
 
-	p = p->next;
-	q = q->next;
-
 	while (p != NULL && q != NULL) {
 		if (p->Exp == q->Exp) {
 			t_koef = p->Koef + q->Koef;
-			t_exp = q->Exp; //Moze i p->Exp
+			t_exp = p->Exp; //Moze i p->Exp
 			SortUnos(r, t_koef, t_exp);
 			p = p->next;
 			q = q->next;
@@ -210,10 +214,32 @@ int ZbrajanjePol(Polinom p, Polinom q, Polinom r) {
 }
 int MnozenjePol(Polinom p, Polinom q, Polinom r) {
 
+	Polinom pamti_q = q;
+	double t_koef;
+	int t_exp;
+	int succ;
 
+	while (p != NULL) {
+		while (q != NULL) {
+			t_koef = p->Koef * q->Koef;
+			t_exp = p->Exp + q->Exp;
+			succ = SortUnos(r, t_koef, t_exp);
+			q = q->next;
+		}
+		q = pamti_q;
+		p = p->next;
+	}
+
+	return OKAY;
 }
 int IspisPol(Polinom p) {
 
+	printf("Ispis polinoma:\n\n");
 
+	while (p != NULL) {
+		printf("(%lf * x ^ %d) ", p->Koef, p->Exp);
+		p = p->next;
+	}
 
+	return OKAY;
 }
