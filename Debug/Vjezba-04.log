@@ -1,25 +1,6 @@
 ﻿  Source.c
 E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(57,28): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
 E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(57,22): warning C4024: 'UnosDat': different types for formal and actual parameter 2
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(58,28): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(58,22): warning C4024: 'UnosDat': different types for formal and actual parameter 2
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(60,19): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(60,11): warning C4024: 'IspisPol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(61,19): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(61,11): warning C4024: 'IspisPol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(68,31): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(68,23): warning C4024: 'ZbrajanjePol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(68,41): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(68,33): warning C4024: 'ZbrajanjePol': different types for formal and actual parameter 2
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(74,30): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(74,22): warning C4024: 'MnozenjePol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(74,40): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(74,32): warning C4024: 'MnozenjePol': different types for formal and actual parameter 2
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(83,26): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(83,18): warning C4024: 'IspisPol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(84,26): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(84,18): warning C4024: 'IspisPol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(85,27): warning C4047: 'function': 'Polinom' differs in levels of indirection from 'Polinom *'
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(85,18): warning C4024: 'IspisPol': different types for formal and actual parameter 1
-E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(132): warning C4716: 'UnosString': must return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(62,28): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
+E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Source.c(62,22): warning C4024: 'UnosDat': different types for formal and actual parameter 2
   Vjezba-04.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj4\Vjezba-04\Debug\Vjezba-04.exe

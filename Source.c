@@ -33,7 +33,7 @@ int main() {
 
 	int succ = Odabir();
 	if (succ == OKAY)
-		printf("Sve je dobro! <3");
+		printf("\n\nSve je dobro! <3");
 	else
 		Err();
 
@@ -55,23 +55,27 @@ int Odabir() {
 	rez.next = NULL;
 	
 	succ = UnosDat(&p1, &poli1);
-	succ = UnosDat(&p2, &poli2);
+	if (succ != OKAY)
+		printf("Nece unos1");
+	succ = IspisPol(p1.next);
 
-	IspisPol(&p1.next);
-	IspisPol(&p2.next);
+	succ = UnosDat(&p2, &poli2);
+	if (succ != OKAY)
+		printf("Nece unos2");
+	succ = IspisPol(p2.next);
 
 	printf("Odaberite operaciju koju želite izvršiti:\n1 - Zbrajanje polinoma\n2 - Mnozenje polinoma\n");
 	scanf("%d", &c);
 	
 	switch (c) {
 	case(1):
-		succ = ZbrajanjePol(&p1.next, &p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
+		succ = ZbrajanjePol(p1.next, p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
 			printf("Neæe zbrajanje!");
 		break;
 
 	case(2):
-		succ = MnozenjePol(&p1.next, &p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
+		succ = MnozenjePol(p1.next, p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
 			printf("Neæe zbrajanje kraljice!");
 		break;
@@ -80,9 +84,9 @@ int Odabir() {
 		Err();
 		return ERR;
 	}	
-	succ = IspisPol(&p1.next);
-	succ = IspisPol(&p2.next);
-	succ = IspisPol(&rez.next);
+	succ = IspisPol(p1.next);
+	succ = IspisPol(p2.next);
+	succ = IspisPol(rez.next);
 
 	return OKAY;
 }
@@ -114,6 +118,7 @@ int UnosDat(Polinom p, char* fileName) {
 	}// ? Može i bez while ako podrazumjevamo da naša datoteka ima samo jedan redak ? (Jer koristimo fgets a ona kupi citav redak)
 
 	fclose(fp);
+
 	return OKAY;
 }
 
@@ -123,12 +128,15 @@ int UnosString(Polinom p, char* line) {
 	int p_exp = 0;
 	int n = 0;
 
-	while (ret != 2) {
+	while(1){
 		ret = sscanf(line, "%lf %d %n", &p_koef, &p_exp, &n);
 		line += n;
+		if (ret != 2)//Ovde je "beskonacna petlja" while(1) jer ne mogu nikako drugacije napravit provjeru kolko je stvari procito sscanf
+			break;// nakon sto je provjerio jeli procito dva broja izlazi iz petlje ako nije sto znaci da smo upisali neke gluposti da ih nebi procito osim ako su dva broja
 		SortUnos(p, p_koef, p_exp);
 	}
 
+	return OKAY;
 }
 int SortUnos(Polinom p, double koef, int exp) {
 
@@ -234,10 +242,10 @@ int MnozenjePol(Polinom p, Polinom q, Polinom r) {
 }
 int IspisPol(Polinom p) {
 
-	printf("Ispis polinoma:\n\n");
+	printf("\nIspis polinoma:\n\n");
 
 	while (p != NULL) {
-		printf("(%lf * x ^ %d) ", p->Koef, p->Exp);
+		printf("(%.2lf * x ^ %d) ", p->Koef, p->Exp);
 		p = p->next;
 	}
 
