@@ -1,5 +1,5 @@
-/*Napisati program za zbrajanje i mnoûenje polinoma. Koeficijenti i eksponenti se
-Ëitaju iz datoteke. */
+/*Napisati program za zbrajanje i mno≈æenje polinoma. Koeficijenti i eksponenti se
+ƒçitaju iz datoteke. */
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -64,20 +64,20 @@ int Odabir() {
 		printf("Nece unos2");
 	succ = IspisPol(p2.next);
 
-	printf("Odaberite operaciju koju ûelite izvröiti:\n1 - Zbrajanje polinoma\n2 - Mnozenje polinoma\n");
+	printf("Odaberite operaciju koju ≈æelite izvr≈°iti:\n1 - Zbrajanje polinoma\n2 - Mnozenje polinoma\n");
 	scanf("%d", &c);
 	
 	switch (c) {
 	case(1):
 		succ = ZbrajanjePol(p1.next, p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
-			printf("NeÊe zbrajanje!");
+			printf("Neƒáe zbrajanje!");
 		break;
 
 	case(2):
 		succ = MnozenjePol(p1.next, p2.next, &rez);//saljemo prvi stvarni element od p1 i p2
 		if (succ != OKAY)
-			printf("NeÊe zbrajanje kraljice!");
+			printf("Neƒáe zbrajanje kraljice!");
 		break;
 
 	default:
@@ -115,7 +115,7 @@ int UnosDat(Polinom p, char* fileName) {
 		memset(line, '\0', lng); //popunjava svaki clan stringa sa \0
 		fgets(line, lng - 1, fp);//Kupi sve iz datoteke osim zadnjeg \0 znaka
 		UnosString(p, line);
-	}// ? Moûe i bez while ako podrazumjevamo da naöa datoteka ima samo jedan redak ? (Jer koristimo fgets a ona kupi citav redak)
+	}// ? Mo≈æe i bez while ako podrazumjevamo da na≈°a datoteka ima samo jedan redak ? (Jer koristimo fgets a ona kupi citav redak)
 
 	fclose(fp);
 
