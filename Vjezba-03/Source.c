@@ -1,17 +1,17 @@
-/*Definirati strukturu osoba(ime, prezime, godina roðenja) i napisati program koji :
-a) dinamièki dodaje novi element na poèetak liste,
+/*Definirati strukturu osoba(ime, prezime, godina roÃ°enja) i napisati program koji :
+a) dinamiÃ¨ki dodaje novi element na poÃ¨etak liste,
 b) ispisuje listu,
-c) dinamièki dodaje novi element na kraj liste,
+c) dinamiÃ¨ki dodaje novi element na kraj liste,
 d) pronalazi element u listi(po prezimenu),
-e) briše odreðeni element iz liste,
+e) briÅ¡e odreÃ°eni element iz liste,
 U zadatku se ne smiju koristiti globalne varijable.*/
 
 /*Prethodnom zadatku dodati funkcije:
-a) dinamièki dodaje novi element iza odreðenog elementa,
-b) dinamièki dodaje novi element ispred odreðenog elementa,
+a) dinamiÃ¨ki dodaje novi element iza odreÃ°enog elementa,
+b) dinamiÃ¨ki dodaje novi element ispred odreÃ°enog elementa,
 c) sortira listu po prezimenima osoba,
 d) upisuje listu u datoteku,
-e) èita listu iz datoteke.*/
+e) Ã¨ita listu iz datoteke.*/
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -49,12 +49,12 @@ int main() {
 	Pozicija tr;
 	Head.next = NULL;
 
-	//Unošenje elemenata
+	//UnoÅ¡enje elemenata
 	CitajDat(&Head);
 	/*
 	
 
-	//Unos na poèetak liste
+	//Unos na poÃ¨etak liste
 	succ = UnosP(&Head);
 	if (succ == ERR)
 		printf("Ne radi unosP kraljice.....");
@@ -94,7 +94,7 @@ int main() {
 	//Upis unesenih stvari u datoteku
 	/*succ = UpisiDat(&Head);
 	if (succ == ERR)
-		printf("Neæe datoteka(w) kraljice.......");*/
+		printf("NeÃ¦e datoteka(w) kraljice.......");*/
 
 	//Sortiranje i ispis
 	succ = Sortiraj(&Head);
@@ -112,12 +112,12 @@ int main() {
 		if (tr == ERR)
 			printf("Kraljice nece trazenje......");*/
 
-			//printf("Prezime u naðenom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
+			//printf("Prezime u naÃ°enom elementu je: %s\n\n", tr->prezime); //Oznacava da je trazenje uspjelo
 
-			//Primjer brisanja elementa naðenog po prezimenu
+			//Primjer brisanja elementa naÃ°enog po prezimenu
 			/*succ = BrisiEl(&Head);
 			if (succ != OKAY)
-				printf("Kraljice neæe brisanje.......");*/
+				printf("Kraljice neÃ¦e brisanje.......");*/
 				//Ispis
 				/*succ = Ispis(Head.next);
 				if (succ == ERR)
@@ -243,14 +243,14 @@ int UnosIza(Pozicija h) {
 	char iza[MAX_NAME];
 	int succ;
 
-	printf("Unesite prezime elementa iza kojega želite unijeti novi element: ");
+	printf("Unesite prezime elementa iza kojega Å¾elite unijeti novi element: ");
 	scanf(" %s", iza);
 
 	pr = TraziPrez(h, iza);
 
 	succ = UnosP(pr);
 	if (succ == ERR) {
-		printf("Unos iza neæe.........");
+		printf("Unos iza neÃ¦e.........");
 		return ERR;
 	}
 
@@ -268,7 +268,7 @@ int UnosIspred(Pozicija h) {
 
 	succ = UnosP(pred);
 	if (succ == ERR) {
-		printf("Unos ispred neæe.........");
+		printf("Unos ispred neÃ¦e.........");
 		return ERR;
 	}
 
@@ -281,7 +281,7 @@ int UpisiDat(Pozicija h) {
 
 	fp = fopen("studenti.txt", "w");
 	if (fp == NULL) {
-		printf("Neæe da se otvori datoteka za upis kween....");
+		printf("NeÃ¦e da se otvori datoteka za upis kween....");
 		return ERR;
 	}
 	rewind(fp);
@@ -299,7 +299,7 @@ int CitajDat(Pozicija h) {
 
 	fp = fopen("studenti1.txt", "r");
 	if (fp == NULL) {
-		printf("Neæe da se otvori datoteka za citanje kween....");
+		printf("NeÃ¦e da se otvori datoteka za citanje kween....");
 		return ERR;
 	}
 	rewind(fp);
