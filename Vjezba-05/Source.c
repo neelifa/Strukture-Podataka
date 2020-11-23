@@ -1,8 +1,8 @@
-/*Za dvije sortirane liste L1 i L2 (mogu se proèitati iz datoteke ili unijeti ruèno, bitno je
-samo da su sortirane), napisati program koji stvara novu vezanu listu tako da raèuna:
+/*Za dvije sortirane liste L1 i L2 (mogu se proÃ¨itati iz datoteke ili unijeti ruÃ¨no, bitno je
+samo da su sortirane), napisati program koji stvara novu vezanu listu tako da raÃ¨una:
 a) L1 unij L2,
 b) L1 presjek L2.
-Liste osim pokazivaèa na slijedeæu strukturu imaju i jedan cjelobrojni element, po
+Liste osim pokazivaÃ¨a na slijedeÃ¦u strukturu imaju i jedan cjelobrojni element, po
 kojem su sortirane.*/
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -65,13 +65,13 @@ int Odabir() {
 	case(1):
 		succ = Unija(head1.next, head2.next, &r);
 		if (succ != OKAY)
-			printf("Neæe unija!");
+			printf("NeÃ¦e unija!");
 		break;
 
 	case(2):
 		succ = Presjek(head1.next, head2.next, &r);
 		if (succ != OKAY)
-			printf("Neæe presjek kraljice!");
+			printf("NeÃ¦e presjek kraljice!");
 		break;
 
 	default:
