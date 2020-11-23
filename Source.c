@@ -56,6 +56,8 @@ int Odabir() {
 	succ = DatUnos(&head1, dat1);
 	succ = DatUnos(&head2, dat2);
 
+	succ = Ispis(head1.next);
+	succ = Ispis(head2.next);
 	printf("Zelite li operaciju unije ili presjeka?\n\n1 - Unija lista\n2 - Presjek lista\n");
 	scanf("%d", &c);
 
@@ -99,7 +101,7 @@ int DatUnos(Pozicija h, char* fileName) {
 	}
 
 	while (!feof(fp)) {
-		fgets(line, size - 1, fp);
+		fgets(line, size, fp);
 		succ = StringUnos(h, line);
 	}
 
@@ -127,7 +129,6 @@ int StringUnos(Pozicija h, char* line) {
 
 int SortUnos(Pozicija h, int elem) {
 	int succ = 0;
-	Pozicija temp;
 
 	while (h->next != NULL && h->next->el < elem)
 		h = h->next;
@@ -162,32 +163,37 @@ int Unija(Pozicija h, Pozicija p, Pozicija r) {
 	while (h != NULL && p != NULL) {
 		if (h->el == p->el) {
 			elem = h->el;
-			succ = SortUnos(r, elem);
+			succ = Unos(r, elem);
 			h = h->next;
 			p = p->next;
+			r = r->next;
 		}
-		if (h->el > p->el) {
-			elem = p->next;
-			succ = SortUnos(r, elem);
+		else if (h->el > p->el) {
+			elem = p->el;
+			succ = Unos(r, elem);
 			p = p->next;
+			r = r->next;
 		}
-		if (h->el < p->el) {
+		else {
 			elem = h->el;
-			succ = SortUnos(r, elem);
+			succ = Unos(r, elem);
 			h = h->next;
+			r = r->next;
 		}
 	}
 
 	while (h != NULL) {
 		elem = h->el;
-		succ = SortUnos(r, elem);
+		succ = Unos(r, elem);
 		h = h->next;
+		r = r->next;
 	}
 
 	while (p != NULL) {
 		elem = p->el;
-		succ = SortUnos(r, elem);
+		succ = Unos(r, elem);
 		p = p->next;
+		r = r->next;
 	}
 
 	return OKAY;
@@ -199,14 +205,15 @@ int Presjek(Pozicija h, Pozicija p, Pozicija r) {
 	while (h != NULL && p != NULL) {
 		if (h->el == p->el) {
 			elem = h->el;
-			succ = SortUnos(r, elem);
+			succ = Unos(r, elem);
 			h = h->next;
 			p = p->next;
+			r = r->next;
 		}
-		if (h->el > p->el) {
+		else if (h->el > p->el) {
 			p = p->next;
 		}
-		if (h->el < p->el) {
+		else {
 			h = h->next;
 		}
 	}
@@ -218,9 +225,11 @@ int Presjek(Pozicija h, Pozicija p, Pozicija r) {
 int Ispis(Pozicija h) {
 
 	while (h != NULL) {
-		printf("%d", h->el);
+		printf("%d ", h->el);
 		h = h->next;
 	}
+
+	printf("\n");
 
 	return OKAY;
 }
