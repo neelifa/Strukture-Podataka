@@ -1,0 +1,4 @@
+﻿  Source.c
+E:\FESB\2. godina\Strukture podataka\labs\vj6\Vjezba-06\Source.c(60,18): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\FESB\2. godina\Strukture podataka\labs\vj6\Vjezba-06\Source.c(116,14): warning C4013: 'Brisi' undefined; assuming extern returning int
+  Vjezba-06.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj6\Vjezba-06\Debug\Vjezba-06.exe
