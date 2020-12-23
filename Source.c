@@ -63,7 +63,7 @@ int Odabir()
 	head.next = 0;
 
 	while (1) {
-		printf("Zelite li koristiti stog ili red?\n1 - Stog\n2 - Red\n3 - Izlaz iz programa\n");
+		printf("\nZelite li koristiti stog ili red?\n1 - Stog\n2 - Red\n3 - Izlaz iz programa\n");
 		scanf("%d", &c);
 
 		switch (c) {
@@ -94,27 +94,37 @@ int Stog(Pozicija h)
 
 	int i;
 	int n; 
+	int c;
 	int succ;
 	int br;
 
-	printf("\nUnesite koliko brojeva zelite unijeti u listu: ");
-	scanf("%d", &n);
+	while (1) {
+		printf("\n1 - Push\n2 - Pop\n3 - Kraj\n");
+		scanf("%d", &c);
 
-	for (i = 0; i < n; i++) {
-		br = RandBr();
-		PushStog(h, br);
+		switch(c){
+		case 1:
+			br = RandBr();
+			PushStog(h, br);
+			succ = Ispis(h->next);
+			break;
+
+		case 2:
+			PopStog(h);
+			succ = Ispis(h->next);
+			break;
+
+		case 3:
+			succ = Brisi(h);
+			break;
+		
+		default:
+			printf("Unijeli ste nesto krivo! Pokusajte ponovno!");
+	
+		}
+		if (c == 3)
+			break;
 	}
-	succ = Ispis(h->next);
-
-	printf("\nUnesite koliko brojeva zelite izbrisati iz liste: ");
-	scanf("%d", &n);
-
-	for (i = 0; i < n; i++) {
-		PopStog(h);
-	}
-	succ = Ispis(h->next);
-	succ = Brisi(h);
-
 	return OKAY;
 }
 
@@ -122,29 +132,38 @@ int Red(Pozicija h)
 {
 	int i;
 	int n;
+	int c;
 	int br;
 	int succ;
 
-	printf("\nUnesite koliko brojeva zelite unijeti u listu: ");
-	scanf("%d", &n);
+	while (1) {
+		printf("\n1 - Push\n2 - Pop\n3 - Kraj\n");
+		scanf("%d", &c);
 
-	for (i = 0; i < n; i++) {
-		br = RandBr();
-		PushStog(h, br);
+		switch (c) {
+		case 1:
+			br = RandBr();
+			PushRed(h, br);
+			succ = Ispis(h->next);
+			break;
+
+		case 2:
+			PopRed(h);
+			succ = Ispis(h->next);
+			break;
+
+		case 3:
+			succ = Brisi(h);
+			break;
+
+		default:
+			printf("Unijeli ste nesto krivo! Pokusajte ponovno!");
+		}
+		if (c == 3)
+			break;
 	}
-	succ = Ispis(h->next);
 
-	printf("\nUnesite koliko brojeva zelite izbrisati iz liste: ");
-	scanf("%d", &n);
-
-	for (i = 0; i < n; i++) {
-		PopRed(h);
-	}
-
-	succ = Ispis(h->next);
-	succ = Brisi(h);
-
-	return OKAY;
+	return IZLAZ;
 }
 
 int Err()
@@ -181,7 +200,6 @@ int PushStog(Pozicija h, int broj)
 
 int PopStog(Pozicija h)
 {
-
 	Pozicija tmp;
 	if (h->next == NULL)
 		return OKAY;
@@ -207,7 +225,6 @@ int PushRed(Pozicija h, int broj)
 
 int PopRed(Pozicija h)
 {
-
 	Pozicija tmp;
 
 	if (h->next == NULL)
