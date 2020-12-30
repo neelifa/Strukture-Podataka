@@ -26,8 +26,8 @@ struct cvor {
 
 int Odabir();
 int Err();
-char* PushDat(char* fileName);
-int PushString(Pozicija h, char* buffer);
+char* UnosDat(char* fileName);
+int UnosString(Pozicija h, char* buffer);
 int Push(Pozicija h, int broj);
 int Pop(Pozicija h);
 int Racunaj(Pozicija h, char op);
@@ -62,14 +62,15 @@ int Odabir()
 	printf("Unesite ime datoteke: ");
 	scanf(" %s", fileName);
 
-	buffer = PushDat(fileName);
+	buffer = UnosDat(fileName);
 	if (NULL == buffer) {
 		printf("Nije dobro unešeno iz datoteke!");
 		return ERR;
 	}
+
 	printf("Postfix izraz glasi: %s", buffer);
 
-	succ = PushString(head, buffer);
+	succ = UnosString(head, buffer);
 
 
 	succ = Ispis(head);
@@ -92,29 +93,30 @@ int Err()
 	return ERR;
 }
 
-char* PushDat(char* fileName)
+char* UnosDat(char* fileName)
 {
 	FILE* fp = NULL;
-	char buffer[size] = { '\0' };
+	char* buffer = NULL;
 
 	if (strstr(fileName, ".txt") == 0)
 		strcat(fileName, ".txt");
 
 	fp = fopen(fileName, "r");
-
 	if (fp == NULL) {
 		printf("Datoteka nije uspješno otvorena!");
 		return NULL;
 	}
+
 	rewind(fp);
 
 	fgets(buffer, size, fp);
+
 	fclose(fp);
 
 	return buffer;
 }
 
-int PushString(Pozicija h, char* buffer)
+int UnosString(Pozicija h, char* buffer)
 {
 	int retVal = 0;
 	int succ = 0, n = 0;
