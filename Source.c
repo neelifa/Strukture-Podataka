@@ -26,11 +26,11 @@ struct cvor {
 
 int Odabir();
 int Err();
-int PushDat(Pozicija h, char* fileName);
+char* PushDat(char* fileName);
 int PushString(Pozicija h, char* buffer);
 int Push(Pozicija h, int broj);
 int Pop(Pozicija h);
-int Racunaj();
+int Racunaj(Pozicija h, char op);
 int Ispis(Pozicija h);
 int Brisi(Pozicija h);
 
@@ -40,22 +40,50 @@ int main()
 
 	succ = Odabir();
 
-	return OKAY;
+	if (succ == OKAY)
+		return OKAY;
+	else
+		return ERR;
 }
 
 int Odabir()
 {
 	int succ;
 	Pozicija head;
+	char fileName[size];
+	char* buffer = NULL;
+
 	head = (Pozicija)malloc(sizeof(struct cvor));
 	if (head == NULL) {
 		printf("Alokacija nije uspjela!(odabir)");
 		return ERR;
 	}
 
+	printf("Unesite ime datoteke: ");
+	scanf(" %s", fileName);
+
+	buffer = PushDat(fileName);
+	if (NULL == buffer) {
+		printf("Nije dobro unešeno iz datoteke!");
+		return ERR;
+	}
+	printf("Postfix izraz glasi: %s", buffer);
+
+	succ = PushString(head, buffer);
 
 
+	succ = Ispis(head);
+	if (succ == ERR) {
+		printf("Funkcija Ispis(Odabir) nije uspijela!");
+		return ERR;
+	}
 
+	succ = Brisi(head);
+	if (succ == ERR) {
+		printf("Funkcija Brisi(Odabir) nije uspijela!");
+		return ERR;
+	}
+	free(head);
 }
 
 int Err()
@@ -64,32 +92,55 @@ int Err()
 	return ERR;
 }
 
-int PushDat(Pozicija h, char* fileName)
+char* PushDat(char* fileName)
 {
 	FILE* fp = NULL;
-	int succ;
-	char buffer[size];
+	char buffer[size] = { '\0' };
 
 	if (strstr(fileName, ".txt") == 0)
 		strcat(fileName, ".txt");
 
 	fp = fopen(fileName, "r");
+
 	if (fp == NULL) {
 		printf("Datoteka nije uspješno otvorena!");
-		return ERR;
+		return NULL;
 	}
+	rewind(fp);
 
-	while (!feof) {
-		fgets(buffer, size, fp);
-		succ = PushString(h, buffer);
-	}
-
+	fgets(buffer, size, fp);
 	fclose(fp);
 
+	return buffer;
 }
 
 int PushString(Pozicija h, char* buffer)
 {
+	int retVal = 0;
+	int succ = 0, n = 0;
+	int el;
+	char op;
+
+	while (1) {
+		retVal = sscanf(buffer, "%d %n", &el, &n);
+
+		if (retVal == 1) {
+			succ = Push(h, el);
+		}
+
+		else {
+			retVal = sscanf(buffer, "%c%n", &op, &n);
+
+			if (retVal == 1) {
+				succ = Racunaj(h, op);
+			}
+			else {
+				break;
+			}
+		}
+
+		buffer += n;
+	}
 
 }
 
@@ -123,9 +174,40 @@ int Pop(Pozicija h)
 	return OKAY;
 }
 
-int Racunaj()
+int Racunaj(Pozicija h, char op)
 {
+	int operandPrvi, operandDrugi;
+	int succ;
 
+	operandDrugi = h->next->el;
+	operandPrvi = h->next->next->el;
+
+	succ = Pop(h);
+	succ = Pop(h);
+
+	switch (op) {
+	case('+'):
+		succ = Push(h, operandPrvi + operandDrugi);
+		break;
+
+	case('-'):
+		succ = Push(h, operandPrvi - operandDrugi);
+		break;
+
+	case('*'):
+		succ = Push(h, operandPrvi * operandDrugi);
+		break;
+
+	case('/'):
+		succ = Push(h, operandPrvi / operandDrugi);
+		break;
+
+	deafult:
+		printf("Došlo je do greške(SwitchCase (Racunaj))!");
+		return ERR;
+	}
+
+	return OKAY;
 }
 
 int Ispis(Pozicija h)
