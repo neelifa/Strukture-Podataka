@@ -1,5 +1,5 @@
 ﻿  Source.c
-E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(206,9): warning C4102: 'deafult': unreferenced label
-E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(87): warning C4715: 'Odabir': not all control paths return a value
-E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(146): warning C4716: 'PushString': must return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(221,9): warning C4102: 'deafult': unreferenced label
+E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(88): warning C4715: 'Odabir': not all control paths return a value
+E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Source.c(161): warning C4716: 'UnosString': must return a value
   Vjezba-07.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj7\Vjezba-07\Debug\Vjezba-07.exe

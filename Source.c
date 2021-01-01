@@ -49,15 +49,15 @@ int main()
 int Odabir()
 {
 	int succ;
-	Pozicija head;
 	char fileName[size];
 	char* buffer = NULL;
-
+	Pozicija head;
 	head = (Pozicija)malloc(sizeof(struct cvor));
 	if (head == NULL) {
 		printf("Alokacija nije uspjela!(odabir)");
 		return ERR;
 	}
+	head->next = NULL;
 
 	printf("Unesite ime datoteke: ");
 	scanf(" %s", fileName);
@@ -73,7 +73,7 @@ int Odabir()
 	succ = UnosString(head, buffer);
 
 
-	succ = Ispis(head);
+	succ = Ispis(head->next);
 	if (succ == ERR) {
 		printf("Funkcija Ispis(Odabir) nije uspijela!");
 		return ERR;
@@ -96,7 +96,9 @@ int Err()
 char* UnosDat(char* fileName)
 {
 	FILE* fp = NULL;
-	char* buffer = NULL;
+	char bufferZaDuljinu[size] = {'\0'};
+	char* buffer  = NULL;
+	int duljinaStringa;
 
 	if (strstr(fileName, ".txt") == 0)
 		strcat(fileName, ".txt");
@@ -107,9 +109,19 @@ char* UnosDat(char* fileName)
 		return NULL;
 	}
 
+	fgets(bufferZaDuljinu, size, fp);
 	rewind(fp);
 
-	fgets(buffer, size, fp);
+	duljinaStringa = strlen(bufferZaDuljinu);
+	duljinaStringa += 1;
+
+	buffer = (char*)malloc((duljinaStringa) * sizeof(char));
+	if (buffer == NULL) {
+		printf("String nije uspješno alociran!");
+		return NULL;
+	}
+	
+	fgets(buffer, duljinaStringa, fp);
 
 	fclose(fp);
 
@@ -134,7 +146,9 @@ int UnosString(Pozicija h, char* buffer)
 			retVal = sscanf(buffer, "%c%n", &op, &n);
 
 			if (retVal == 1) {
-				succ = Racunaj(h, op);
+				if (op != ' ') {
+					succ = Racunaj(h, op);
+				}
 			}
 			else {
 				break;
@@ -214,6 +228,8 @@ int Racunaj(Pozicija h, char op)
 
 int Ispis(Pozicija h)
 {
+	printf("\n");
+
 	while (h != NULL) {
 		printf("%d ", h->el);
 		h = h->next;
