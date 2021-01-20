@@ -16,10 +16,10 @@ korištenje DOS naredbi: 1- "md", 2 - "cd dir", 3 - "cd..", 4 - "dir" i 5 – izlaz
 #define size 255
 #define DG 10
 #define GG 100
-#define IZLAZ -2
+#define IZLAZ (-2)
 #define PETLJA 1
 
-
+struct _cvor;
 typedef struct _cvor* Stablo;
 typedef struct _cvor{
 	char* imeMape;
@@ -28,13 +28,14 @@ typedef struct _cvor{
 	Stablo nextBrat;
 }Cvor; 
 
-
+struct _stog;
+typedef struct _stog* Pozicija;
 typedef struct _stog {
 	Stablo cvorStabla;
 
 	Pozicija next;
 }Stog;
-typedef struct _stog* Pozicija;
+
 
 int mainMenu();
 char* CharAlokacija(char* string);
@@ -88,8 +89,8 @@ int mainMenu()
 	root->nextBrat = NULL;
 	trenutnaPozicija = root;
 
+	memset(putanja, '\0', sizeof(putanja));
 	strcat(putanja, root->imeMape);
-	strcat(putanja, "\\");
 
 	/*Head od stoga*/
 	head = (Pozicija)malloc(sizeof(Stog));
@@ -104,26 +105,27 @@ int mainMenu()
 
 		fgets(naredbeniRedak, size, stdin);
 
-		retVal = sscanf("%s %s", naredba, imeMape);
-		if(retVal = 0){
-			printf("\n\nNetoèan unos!");
+		retVal = sscanf(naredbeniRedak, "%s %s", naredba, imeMape);
+		/*if (retVal == 0) {
+			printf("\nNetocan unos!");
 			continue;
-		}
+		}*/
 
-		if (strcmp(naredba, "md") == 0)
+		if (strcmp(naredba, "md") == 0) {
 			succ = NovaMapa(trenutnaPozicija, imeMape);
-
-		else if (strcmp(naredba, "dir") == 0)
+		}
+		else if (strcmp(naredba, "dir") == 0) {
 			succ = PrikaziSveMape(trenutnaPozicija);
-
-		else if (strcmp(naredba, "cd") == 0)
+		}
+		else if (strcmp(naredba, "cd") == 0) {
 			trenutnaPozicija = PromijeniMapu(trenutnaPozicija, head, imeMape, putanja);
-
-		else if (strcmp(naredba, "cd..") == 0)
+		}
+		else if (strcmp(naredba, "cd..") == 0){
 			trenutnaPozicija = NatragMapa(trenutnaPozicija, head, putanja);
-
-		else if (strcmp(naredba, "exit") == 0)
+		}
+		else if (strcmp(naredba, "exit") == 0) {
 			break;
+		}
 		else
 			printf("Neispravan unos");
 
@@ -131,6 +133,7 @@ int mainMenu()
 
 	return OKAY;
 }
+
 char* CharAlokacija(char* string) 
 {
 	string = (char*)malloc(size * sizeof(char));
@@ -159,8 +162,8 @@ int Push(Pozicija h, Stablo s)
 int Pop(Pozicija h)
 {
 	Pozicija tmp;
-	if (h->next == NULL)
-		return OKAY;
+	if (NULL == h->next )
+		return IZLAZ;
 	else {
 		tmp = h->next;
 		h->next = tmp->next;
@@ -191,7 +194,7 @@ int NovaMapa(Stablo s, char* imeMape) {
 	ProstorZaNovuMapu(&p);
 
 	p->imeMape = (char*)malloc(sizeof(strlen(imeMape) + 1));
-	p->imeMape = imeMape;
+	strcpy(p->imeMape, imeMape);
 
 	p->nextBrat = s->djete;
 	s->djete = p;
@@ -199,7 +202,7 @@ int NovaMapa(Stablo s, char* imeMape) {
 	return OKAY;
 }
 
-Stablo PromjeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
+Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 {
 	Push(h, s);
 
@@ -215,7 +218,28 @@ Stablo PromjeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 	return s;
 }
 
-Stablo NatragMapa(Stablo s, Pozicija h, char* path);
+Stablo NatragMapa(Stablo s, Pozicija h, char* path)
+{
+	int succ = 0;
+	Pozicija temp;
+	char* krajPatha = NULL;
+
+	temp = h->next;
+
+	succ = Pop(h);
+
+	if (succ == IZLAZ) {
+		puts("Nalazite se u root mapi!");
+		IspisPutanje(path);
+		return s;
+	}
+	else {
+		s = temp->cvorStabla;
+		krajPatha = strrchr(path, "\\");
+		*krajPatha = '\0';
+	}
+	return s;
+}
 
 int PrikaziSveMape(Stablo s)
 {
@@ -223,7 +247,7 @@ int PrikaziSveMape(Stablo s)
 	printf("\n");
 
 	while (s != NULL) {
-		printf("/n/t<DIR>/t%s", s->imeMape);
+		printf("\n\t<DIR>\t %s", s->imeMape);
 		s = s->nextBrat;
 	}
 
@@ -240,8 +264,8 @@ int BrisiStablo(Stablo s)
 {
 	if (s == NULL) return OKAY;
 
-	FreeTree(s->djete);
-	FreeTree(s->nextBrat);
+	BrisiStablo(s->djete);
+	BrisiStablo(s->nextBrat);
 	free(s->imeMape);
 	free(s);
 
