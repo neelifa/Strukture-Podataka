@@ -76,8 +76,8 @@ int main()
 	UpisUDatoteku(red, imeIzlazneDatoteke);
 
 	BrisiStablo(head->next->cvorStabla);
-	BrisiListu(head);
 	BrisiListu(red);
+	BrisiListu(head);
 }
 
 
@@ -253,7 +253,7 @@ int UpisUDatoteku(Pozicija r, char* fileName) {
 	rewind(fp);
 
 	while (r != NULL) {
-		fprintf(fp, "%s \n", r->el);
+		fprintf(fp, "%s ", r->el);
 		r = r->next;
 	}
 
