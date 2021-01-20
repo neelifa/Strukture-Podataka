@@ -1,0 +1,4 @@
+﻿  Source.c
+E:\FESB\2. godina\Strukture podataka\labs\vj10\Vjezba-10\Source.c(210,17): warning C4047: '!=': 'char [20]' differs in levels of indirection from 'int'
+E:\FESB\2. godina\Strukture podataka\labs\vj10\Vjezba-10\Source.c(293): warning C4716: 'BrisiStablo': must return a value
+  Vjezba-10.vcxproj -> E:\FESB\2. godina\Strukture podataka\labs\vj10\Vjezba-10\Debug\Vjezba-10.exe
