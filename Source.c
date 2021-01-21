@@ -40,7 +40,7 @@ typedef struct _stog {
 int mainMenu();
 char* CharAlokacija(char* string);
 int Push(Pozicija h, Stablo s);
-int Pop(Pozicija h);
+Stablo Pop(Pozicija h);
 int ProstorZaNovuMapu(Stablo* s);
 int NovaMapa(Stablo s, char* imeMape);
 Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path);
@@ -95,6 +95,7 @@ int mainMenu()
 	/*Head od stoga*/
 	head = (Pozicija)malloc(sizeof(Stog));
 	if (NULL == head) return ERR;
+	head->next = NULL;
 
 	while (PETLJA) {
 		succ = IspisPutanje(putanja);
@@ -106,11 +107,7 @@ int mainMenu()
 		fgets(naredbeniRedak, size, stdin);
 
 		retVal = sscanf(naredbeniRedak, "%s %s", naredba, imeMape);
-		/*if (retVal == 0) {
-			printf("\nNetocan unos!");
-			continue;
-		}*/
-
+		
 		if (strcmp(naredba, "md") == 0) {
 			succ = NovaMapa(trenutnaPozicija, imeMape);
 		}
@@ -159,18 +156,22 @@ int Push(Pozicija h, Stablo s)
 	return OKAY;
 }
 
-int Pop(Pozicija h)
+Stablo Pop(Pozicija h)
 {
 	Pozicija tmp;
-	if (NULL == h->next )
-		return IZLAZ;
-	else {
+	Stablo ret;
+
+	if (NULL != h->next ) {
+
+		ret = h->next->cvorStabla;
+
 		tmp = h->next;
 		h->next = tmp->next;
 		free(tmp);
-	}
 
-	return OKAY;
+		return ret;
+	}
+	return NULL;
 }
 
 int ProstorZaNovuMapu(Stablo* s) {
@@ -204,13 +205,20 @@ int NovaMapa(Stablo s, char* imeMape) {
 
 Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 {
-	Push(h, s);
+	Stablo temp = s;
 
 	s = s->djete;
 
-	while (strcmp(s->imeMape, imeMape) != 0) {
+	while (NULL != s && strcmp(s->imeMape, imeMape) != 0) {
 		s = s->nextBrat;
 	}
+
+	if (NULL == s) {
+		printf("Ne postoji mapa %s!", imeMape);
+		return temp;
+	}
+
+	Push(h, s);
 
 	strcat(path, "\\");
 	strcat(path, imeMape);
@@ -220,43 +228,39 @@ Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 
 Stablo NatragMapa(Stablo s, Pozicija h, char* path)
 {
-	int succ = 0;
-	Pozicija temp;
 	char* krajPatha = NULL;
+	Stablo temp;
 
-	temp = h->next;
+	temp = Pop(h);
 
-	succ = Pop(h);
-
-	if (succ == IZLAZ) {
+	if (temp == NULL) {
 		puts("Nalazite se u root mapi!");
-		IspisPutanje(path);
-		return s;
 	}
 	else {
-		s = temp->cvorStabla;
+		s = temp;
+
 		krajPatha = strrchr(path, "\\");
 		*krajPatha = '\0';
+
 	}
 	return s;
+
 }
 
 int PrikaziSveMape(Stablo s)
 {
 	s = s->djete;
-	printf("\n");
 
 	while (s != NULL) {
 		printf("\n\t<DIR>\t %s", s->imeMape);
 		s = s->nextBrat;
 	}
-
 	return OKAY;
 }
 
 int IspisPutanje(char* path) {
 
-	printf("\n\n%s>", path);
+	printf("\n%s>", path);
 
 }
 
