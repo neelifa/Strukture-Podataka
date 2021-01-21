@@ -207,6 +207,8 @@ Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 {
 	Stablo temp = s;
 
+	Push(h, s);
+
 	s = s->djete;
 
 	while (NULL != s && strcmp(s->imeMape, imeMape) != 0) {
@@ -218,7 +220,6 @@ Stablo PromijeniMapu(Stablo s, Pozicija h, char* imeMape, char* path)
 		return temp;
 	}
 
-	Push(h, s);
 
 	strcat(path, "\\");
 	strcat(path, imeMape);
@@ -234,12 +235,12 @@ Stablo NatragMapa(Stablo s, Pozicija h, char* path)
 	temp = Pop(h);
 
 	if (temp == NULL) {
-		puts("Nalazite se u root mapi!");
+		printf("Nalazite se u root mapi!");
 	}
 	else {
 		s = temp;
 
-		krajPatha = strrchr(path, "\\");
+		krajPatha = strrchr(path, '\\');
 		*krajPatha = '\0';
 
 	}
